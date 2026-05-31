@@ -1,140 +1,278 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VDAWG - Gaming Channel</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Navigation Header -->
-    <header class="navbar">
-        <div class="navbar-container">
-            <div class="logo">
-                <h1>VDAWG</h1>
-            </div>
-            <nav class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#featured">Featured</a>
-                <a href="#about">About</a>
-                <a href="#content">Content</a>
-                <a href="#subscribe" class="cta-btn">Subscribe</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2 class="hero-title">VDAWG</h2>
-            <p class="hero-subtitle">Gaming Content • Gear Reviews • PC Builds</p>
-            <p class="hero-description">Minecraft • Fortnite • Gaming Setup Reviews</p>
-            <a href="https://www.youtube.com/@VDAWG" class="hero-cta" target="_blank">Visit Channel</a>
-        </div>
-        <div class="hero-glow"></div>
-    </section>
-
-    <!-- Featured Video Section -->
-    <section id="featured" class="featured">
-        <div class="featured-container">
-            <h2 class="section-title">Featured Video</h2>
-            <div class="video-wrapper">
-                <iframe 
-                    width="100%" 
-                    height="600" 
-                    src="https://www.youtube.com/embed/3xiD1B53pnM" 
-                    title="VDAWG Featured Video"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <h2 class="section-title">About VDAWG</h2>
-            <div class="about-content">
-                <p>Welcome to VDAWG! I create gaming content focused on Minecraft and Fortnite gameplay, gear reviews, and build guides.</p>
-                <p>From mouse and keyboard reviews to full PC build walkthroughs, I test equipment and share honest recommendations through affiliate links.</p>
-                <p class="highlight">New content every 2 weeks with shorts in between.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Categories -->
-    <section id="content" class="content-grid">
-        <h2 class="section-title">What We Create</h2>
-        <div class="grid-container">
-            <div class="content-card">
-                <div class="card-icon">🎮</div>
-                <h3>Gameplay</h3>
-                <p>Minecraft building and Fortnite competitive gameplay</p>
-            </div>
-            <div class="content-card">
-                <div class="card-icon">⌨️</div>
-                <h3>Gear Reviews</h3>
-                <p>Mouse, keyboard, and monitor reviews with real testing</p>
-            </div>
-            <div class="content-card">
-                <div class="card-icon">🖥️</div>
-                <h3>PC Builds</h3>
-                <p>Building and testing gaming PCs with component breakdowns</p>
-            </div>
-            <div class="content-card">
-                <div class="card-icon">💰</div>
-                <h3>Amazon Affiliate</h3>
-                <p>Recommended gear with affiliate links for tested products</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gear Testing Section -->
-    <section class="gear-section">
-        <h2 class="section-title">Current Gear Testing</h2>
-        <div class="gear-list">
-            <div class="gear-item">
-                <span class="gear-name">Razer DeathAdder Essential</span>
-                <span class="gear-type">Mouse</span>
-            </div>
-            <div class="gear-item">
-                <span class="gear-name">SteelSeries Apex Pro</span>
-                <span class="gear-type">Keyboard</span>
-            </div>
-            <div class="gear-item">
-                <span class="gear-name">Logitech G502</span>
-                <span class="gear-type">Mouse</span>
-            </div>
-            <div class="gear-item">
-                <span class="gear-name">Koorui 240Hz Monitor</span>
-                <span class="gear-type">Monitor</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Subscribe CTA Section -->
-    <section id="subscribe" class="subscribe-section">
-        <div class="subscribe-container">
-            <h2>Ready to Level Up?</h2>
-            <p>Subscribe for new gaming content, gear reviews, and PC build guides</p>
-            <a href="https://www.youtube.com/@VDAWG" class="subscribe-btn" target="_blank">Subscribe Now</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 VDAWG. Gaming content, gear reviews, and PC builds.</p>
-            <div class="footer-links">
-                <a href="https://www.youtube.com/@VDAWG" target="_blank">YouTube</a>
-                <a href="#">Contact</a>
-                <a href="#">Privacy</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
+pt · JS
+// ================================
+//   VDAWG - Gaming Channel JS
+//   Scroll animations, nav effects,
+//   interactions & easter eggs
+// ================================
+ 
+document.addEventListener('DOMContentLoaded', () => {
+ 
+    // ---- Navbar Scroll Effect ----
+    const navbar = document.querySelector('.navbar');
+ 
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.borderBottomColor = 'rgba(45, 232, 176, 0.3)';
+            navbar.style.background = 'rgba(8, 10, 10, 0.98)';
+        } else {
+            navbar.style.borderBottomColor = 'rgba(45, 232, 176, 0.15)';
+            navbar.style.background = 'rgba(10, 12, 12, 0.92)';
+        }
+    });
+ 
+    // ---- Active Nav Link on Scroll ----
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+ 
+    const observerNav = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+                if (active) active.classList.add('active');
+            }
+        });
+    }, { threshold: 0.5 });
+ 
+    sections.forEach(section => observerNav.observe(section));
+ 
+    // ---- Scroll Reveal Animation ----
+    const revealElements = document.querySelectorAll(
+        '.content-card, .gear-item, .about-content p, .video-wrapper'
+    );
+ 
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('revealed');
+                }, i * 80);
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+ 
+    revealElements.forEach(el => {
+        el.classList.add('hidden');
+        revealObserver.observe(el);
+    });
+ 
+    // ---- Smooth Scroll for Nav Links ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offset = 70;
+                const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    });
+ 
+    // ---- Typing Effect on Hero Title ----
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        const text = 'VDAWG';
+        heroTitle.textContent = '';
+        heroTitle.style.opacity = '1';
+ 
+        let i = 0;
+        const type = () => {
+            if (i < text.length) {
+                heroTitle.textContent += text[i];
+                i++;
+                setTimeout(type, 120);
+            } else {
+                heroTitle.classList.add('typed');
+            }
+        };
+        setTimeout(type, 300);
+    }
+ 
+    // ---- Teal Cursor Trail ----
+    const canvas = document.createElement('canvas');
+    canvas.id = 'cursor-trail';
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+    `;
+    document.body.appendChild(canvas);
+ 
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+ 
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+ 
+    const particles = [];
+    let mouse = { x: 0, y: 0 };
+ 
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+ 
+        for (let i = 0; i < 2; i++) {
+            particles.push({
+                x: mouse.x,
+                y: mouse.y,
+                size: Math.random() * 4 + 1,
+                speedX: (Math.random() - 0.5) * 1.5,
+                speedY: (Math.random() - 0.5) * 1.5,
+                alpha: 0.7,
+                decay: Math.random() * 0.02 + 0.015
+            });
+        }
+    });
+ 
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+ 
+        particles.forEach((p, index) => {
+            p.x += p.speedX;
+            p.y += p.speedY;
+            p.alpha -= p.decay;
+            p.size *= 0.97;
+ 
+            if (p.alpha <= 0) {
+                particles.splice(index, 1);
+                return;
+            }
+ 
+            ctx.save();
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle = '#2DE8B0';
+            ctx.shadowColor = '#2DE8B0';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        });
+ 
+        requestAnimationFrame(animateParticles);
+    }
+ 
+    animateParticles();
+ 
+    // ---- Gear Items Click to Copy Name ----
+    const gearItems = document.querySelectorAll('.gear-item');
+    gearItems.forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+            const name = item.querySelector('.gear-name').textContent;
+            navigator.clipboard.writeText(name).then(() => {
+                showToast(`Copied: ${name}`);
+            }).catch(() => {
+                showToast(`${name}`);
+            });
+        });
+    });
+ 
+    // ---- Toast Notification ----
+    function showToast(message) {
+        const existing = document.querySelector('.toast');
+        if (existing) existing.remove();
+ 
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = message;
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #111515;
+            color: #2DE8B0;
+            border: 1px solid rgba(45,232,176,0.4);
+            padding: 0.8rem 1.6rem;
+            border-radius: 6px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            z-index: 99999;
+            box-shadow: 0 0 20px rgba(45,232,176,0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+        `;
+        document.body.appendChild(toast);
+ 
+        requestAnimationFrame(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(-50%) translateY(0)';
+        });
+ 
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) translateY(20px)';
+            setTimeout(() => toast.remove(), 300);
+        }, 2500);
+    }
+ 
+    // ---- Subscribe Button Pulse on Hover ----
+    const subscribeBtn = document.querySelector('.subscribe-btn');
+    if (subscribeBtn) {
+        subscribeBtn.addEventListener('mouseenter', () => {
+            subscribeBtn.style.animation = 'btnPulse 0.4s ease';
+        });
+        subscribeBtn.addEventListener('animationend', () => {
+            subscribeBtn.style.animation = '';
+        });
+    }
+ 
+    // ---- Parallax Hero Glow ----
+    const heroGlow = document.querySelector('.hero-glow');
+    window.addEventListener('mousemove', (e) => {
+        if (!heroGlow) return;
+        const xOffset = (e.clientX / window.innerWidth - 0.5) * 40;
+        const yOffset = (e.clientY / window.innerHeight - 0.5) * 40;
+        heroGlow.style.transform = `translate(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset}px))`;
+    });
+ 
+    // ---- Add CSS for reveal + active nav + btn pulse ----
+    const style = document.createElement('style');
+    style.textContent = `
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .revealed {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        .nav-links a.active {
+            color: #2DE8B0 !important;
+        }
+        .nav-links a.active::after {
+            width: 100% !important;
+        }
+        @keyframes btnPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+        .hero-title {
+            min-height: 1em;
+            opacity: 0;
+        }
+        .hero-title.typed {
+            border-right: none;
+        }
+    `;
+    document.head.appendChild(style);
+ 
+    console.log('%cVDAWG', 'color: #2DE8B0; font-size: 3rem; font-weight: 900; font-family: monospace;');
+    console.log('%cGaming Channel Website', 'color: #7a9490; font-size: 1rem;');
+});
+ 
 </html>
